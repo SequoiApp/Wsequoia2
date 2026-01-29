@@ -1,0 +1,47 @@
+#Fonction:
+#- lancer 3 services
+#- exposer uniquement Nginx
+#- monter les certificats Let’s Encrypt
+#- router le trafic via Nginx
+#- isoler le backend R
+#- isoler le frontend
+
+
+version: "0.1"
+
+services:
+  frontend: #Interface
+    image: imageName
+    container_name: name
+    restart: always
+    networks:
+      - networkName
+  
+  backend: #Rsequoia2
+    image: <image de Rsequoia2>
+    container_name: name
+    restart: always
+    networks:
+      - sequoia_net
+
+  nginx:
+    build: ./nginx
+    container_name: sequoia_nginx
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - sequoia_net
+
+networks:
+  sequoia_net:
+    driver: bridge
+
+
+
