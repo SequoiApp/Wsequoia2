@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>SequoiAPP</title>
+        <link rel="icon" type="image/x-icon" href="/asset/favicon.ico">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Leaflet CSS -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
+
+        <!-- Sidebar CSS -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet-sidebar-v2/css/leaflet-sidebar.css">
+
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+
+    <div class="top-bar"></div>
+
+    <div id="map"></div>
+
+    <div id="sidebar-right" class="leaflet-sidebar collapsed">
+
+        <!-- Onglets -->
+        <div class="leaflet-sidebar-tabs">
+            <ul role="tablist">
+                <li><a href="#waypoints" role="tab">📍</a></li>
+            </ul>
+        </div>
+
+        <!-- Contenu -->
+        <div class="leaflet-sidebar-content">
+            <div class="leaflet-sidebar-pane" id="waypoints">
+                <h1 class="leaflet-sidebar-header">
+                    Barre d'outils
+                    <span class="leaflet-sidebar-open"></span>
+                </h1>
+
+                <div id="waypoint-list" class="wp-container">
+
+                    <div class="wp">
+                        <div class="wp-num">1</div>
+                        <div class="wp-info">
+                            <div class="wp-name">Sequoia</div>
+                            <div class="wp-meta">Couches sequoia</div>
+                        </div>
+                    </div>
+
+                    <div class="wp">
+                        <div class="wp-num">2</div>
+                        <div class="wp-info">
+                            <div class="wp-name">Vecteurs</div>
+                            <div class="wp-meta">Couches vecteurs</div>
+                        </div>
+                    </div>
+
+                    <div class="wp">
+                        <div class="wp-num">3</div>
+                        <div class="wp-info">
+                            <div class="wp-name">Rasters</div>
+                            <div class="wp-meta">Couches rasters</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div id="sidebar" class="open">
+        <button id="toggle">☰</button>
+
+        <h2>SequoiAPP</h2>
+        <h3>Cartographie</h3>
+
+        <div class="separator"></div>
+
+        <div id="project_name" class="open">
+            <h4>Nom du projet</h4>
+            <p>BRETAGNE</p> <!--Se met a jour en fonction du nom de projet-->
+
+
+        </div>
+
+
+        <div class="separator"></div>
+        <button class="down_data">Télécharger les données</button>
+    </div>
+    </div>
+
+    <!-- Scripts en bas du body -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/proj4@2.9.1/dist/proj4.js"></script>
+    <script src="https://unpkg.com/proj4leaflet@1.0.2/dist/proj4leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-sidebar-v2/js/leaflet-sidebar.js"></script>
+    <script src="front.js"></script>
+
+
+    <div id="drop-overlay">
+        <div id="drop-icon">Déposez votre fichier ici</div>
+    </div>
+
+
+    <div class="bottom-box">
+        <p>© 2025 QSequoia2 — Interface cartographique</p>
+    </div>
+
+
+
+
+    </body>
+</html>
