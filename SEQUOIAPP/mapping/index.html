@@ -80,14 +80,27 @@
 
         <div id="project_name" class="open">
             <h4>Nom du projet</h4>
-            <p>BRETAGNE</p> <!--Se met a jour en fonction du nom de projet-->
+            <p>----</p> <!--Se met a jour en fonction du nom de projet-->
 
 
         </div>
 
 
         <div class="separator"></div>
-        <button class="down_data">Télécharger les données</button>
+        <button class="down_data" id="openDownload">Télécharger les données</button>
+
+        <div id="downloadModal" class="modal">
+            <div class="modal-content">
+                <h3>Choisir le format d’export</h3>
+
+                <button class="format-btn" data-format="geojson">GeoJSON</button>
+                <button class="format-btn" data-format="csv">CSV</button>
+
+
+                <button id="closeModal" class="close-btn">Annuler</button>
+            </div>
+        </div>
+
     </div>
     </div>
 
@@ -96,7 +109,8 @@
     <script src="https://unpkg.com/proj4@2.9.1/dist/proj4.js"></script>
     <script src="https://unpkg.com/proj4leaflet@1.0.2/dist/proj4leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-sidebar-v2/js/leaflet-sidebar.js"></script>
-    <script src="front.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+    <script type="module" src="front.js"></script>
 
 
     <div id="drop-overlay">
@@ -105,7 +119,7 @@
 
 
     <div class="bottom-box">
-        <p>© 2025 QSequoia2 — Interface cartographique</p>
+        <p>© 2025 SequoiAPP — Interface cartographique</p>
     </div>
 
 

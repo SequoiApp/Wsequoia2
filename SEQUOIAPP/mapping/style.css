@@ -100,11 +100,15 @@
 #sidebar p {
     margin: 4px 0 0;
     font-size: 14px;
-    color: #111827;
+    color: #cf2222;
+    font-size: large;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: italic;
+    font-weight: bold;
     text-align: center;
 }
 
-/* Séparateur premium */
+/* Séparateur */
 .separator {
     height: 1px;
     width: 100%;
@@ -158,8 +162,7 @@
     background: #eceff3;
     box-shadow: 0 0 4px rgba(0,0,0,0.3);
     cursor: pointer;
-    border-radius: 4px;
-}
+    border-radius: 4px;}
 
 /* Quand la sidebar est ouverte → décaler les contrôles Leaflet */
 body.sidebar-open .leaflet-control-container .leaflet-top.leaflet-left {
@@ -183,7 +186,6 @@ body.sidebar-open .leaflet-control-container .leaflet-top.leaflet-left {
   margin: 16px 0;
 }
 
-
 #drop-overlay {
     position: absolute;
     top: 0;
@@ -206,31 +208,8 @@ body.sidebar-open .leaflet-control-container .leaflet-top.leaflet-left {
     opacity: 1;
 }
 
-footer {
-  text-align: center;
-  padding: 2rem 0;
-  margin-top: 3rem;
-  background: rgba(255,255,255,0.05);
-  border-top: 1px solid rgba(255,255,255,0.08);
-}
 
-footer {
-    display: flex;
-    justify-content: space-between; /* left ↔ right */
-    align-items: center;
-    padding: 2rem 2rem;
-    margin-top: 3rem;
-    background: rgba(255,255,255,0.05);
-    border-top: 1px solid rgba(255,255,255,0.08);
-}
-
-.footer-right {
-    text-align: right;
-    color: #b7e4c7;
-    opacity: 0.9;
-}
-
-/*Sidebar gauche leaflet*/
+/*Sidebar droite leaflet*/
 
 
 /* Container scrollable */
@@ -279,4 +258,54 @@ footer {
     font-size: 12px;
     color: #4b5563;
     margin-top: 2px;
+}
+
+
+/*fenetre de téléchargement*/
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: blur(2px);
+    z-index: 3000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: #eceff3;
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    text-align: center;
+    min-width: 260px;
+}
+
+.format-btn {
+    display: block;
+    width: 100%;
+    margin: 8px 0;
+    padding: 10px;
+    background: #427542;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.format-btn:hover {
+    background: #315a31;
+}
+
+.close-btn {
+    margin-top: 10px;
+    background: #aaa;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
 }

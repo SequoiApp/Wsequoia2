@@ -1,3 +1,9 @@
+import { downloadData } from "./export.js";
+import { loadedLayers } from "./state.js";
+
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
 
     // ===============================
@@ -69,6 +75,33 @@ document.addEventListener("DOMContentLoaded", () => {
                 const geojson = JSON.parse(evt.target.result);
                 console.log("GeoJSON chargé", geojson);
 
+                //chargement du nom de projet
+
+                const SUFFIXES = ["poly", "parca", "matrice", "layer", "data"];
+
+                function extractProjectName(rawName) {
+                    let name = rawName.replace(/\.(geojson|json|xlsx|xls|csv)$/i, "");
+
+                    for (const suffix of SUFFIXES) {
+                        const regex = new RegExp(`_${suffix}.*$`, "i");
+                        name = name.replace(regex, "");
+                    }
+
+                    return name;
+                }
+
+                const rawName = geojson.name || file.name;
+
+                const projectName = extractProjectName(rawName)
+
+                if (geojson.name){
+                    updateProjectName(geojson.name);}
+                    else if (file.name){
+                        updateProjectName(projectName)//file.name.replace(/\.(geojson|json)$/i,""))
+                    }
+
+                //Chargement de la couche 
+
                 let layer;
 
                 // Si CRS = EPSG:2154, on reprojette les coordonnées
@@ -83,13 +116,17 @@ document.addEventListener("DOMContentLoaded", () => {
                             return L.latLng(lat, lng);
                         }
                         : undefined, // Leaflet gère EPSG:4326 nativement
-                    style: { color: "#ff0000", weight: 2 },
+                    style: { color: "#ffaa00", weight: 2, fillColor:"#008039",fillOpacity : 0.5 },
                     onEachFeature: (feature, layer) => {
                         if (feature.properties) {
                             layer.bindPopup("<pre>" + JSON.stringify(feature.properties, null, 2) + "</pre>");
                         }
                     }
                 }).addTo(carte);
+                
+                //Stockage des couches : 
+                loadedLayers.push(layer);
+
 
                 carte.fitBounds(layer.getBounds());
 
@@ -120,5 +157,46 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+
+
+    // ===============================
+    // Nom du projet  <div id="project_name" class="open">
+    // ===============================
+
+
+    function updateProjectName(name) {
+        const ProjectNameElement = document.querySelector("#project_name p");
+        if (ProjectNameElement){
+            ProjectNameElement.textContent = name;
+        }
+    }
+
+
+
+    //fentre de telechargement
+    const modal = document.getElementById("downloadModal");
+    const openBtn = document.getElementById("openDownload");
+    const closeBtn = document.getElementById("closeModal");
+
+    openBtn.onclick = () => {
+        modal.style.display = "flex";
+    };
+
+    closeBtn.onclick = () => {
+        modal.style.display = "none";
+    };
+
+    document.querySelectorAll(".format-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const format = btn.dataset.format;
+            modal.style.display = "none";
+
+            downloadData(format, loadedLayers);
+        });
+    });
+
+
+
+
 
 
