@@ -1,0 +1,311 @@
+/* Encadré haut */
+.top-box {
+    width: 100%;
+    background: #eceff3;
+    border-bottom: 1px solid rgba(0,0,0,0.15);
+    padding: 12px 20px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    color: #1f2937;
+    position: relative;
+    z-index: 2000;
+    text-align: center;
+}
+
+/* Encadré bas (fixe) */
+.bottom-box {
+    width: 100%;
+    background: #eceff3;
+    border-top: 1px solid rgba(0,0,0,0.15);
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #374151;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 2000;
+}
+
+/* Décale la carte pour ne pas que les encadrés la recouvrent */
+#map {
+    position: absolute;
+    top: 60px;      /* hauteur du top-box */
+    bottom: 40px;   /* hauteur du bottom-box */
+    left: 0;
+    right: 0;
+}
+
+
+
+
+/* Sidebar */
+#sidebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 260px;
+    height: 100%;
+    background: #eceff3;
+    backdrop-filter: blur(6px);
+    box-shadow: 2px 0 10px rgba(0,0,0,0.15);
+    padding: 20px 18px;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+
+    font-family: system-ui, sans-serif;
+    color: #2b2b2b;
+}
+
+#sidebar.open {
+    transform: translateX(0);
+}
+
+/* Titre principal */
+#sidebar h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: #1f2937;
+    text-align: center;
+}
+
+/* Sous-titre */
+#sidebar h3 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: #4b5563;
+    text-align: center;
+}
+
+/* Label */
+#sidebar h4 {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: #374151;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-align: center;
+}
+
+/* Texte */
+#sidebar p {
+    margin: 4px 0 0;
+    font-size: 14px;
+    color: #cf2222;
+    font-size: large;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: italic;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Séparateur */
+.separator {
+    height: 1px;
+    width: 100%;
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(0, 0, 0, 0.25),
+        transparent
+    );
+    margin: 12px 0;
+}
+
+/* Bloc projet */
+#project_name {
+    padding: 12px 10px;
+    background: rgba(255,255,255,0.6);
+    border-radius: 8px;
+    border: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Bouton toggle */
+#toggle {
+    position: absolute;
+    top: 10px;
+    right: -45px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: #eceff3;
+    box-shadow: 0 0 4px rgba(0,0,0,0.3);
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 20px;
+}
+
+
+
+#sidebar.open {
+    transform: translateX(0);
+}
+
+/* Bouton */
+#toggle {
+    position: absolute;
+    top: 10px;
+    right: -45px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: #eceff3;
+    box-shadow: 0 0 4px rgba(0,0,0,0.3);
+    cursor: pointer;
+    border-radius: 4px;}
+
+/* Quand la sidebar est ouverte → décaler les contrôles Leaflet */
+body.sidebar-open .leaflet-control-container .leaflet-top.leaflet-left {
+    margin-left: 260px;
+}
+
+/* Décale les boutons zoom quand la sidebar est ouverte */
+body.sidebar-open .leaflet-control-container .leaflet-top.leaflet-left {
+    margin-left: 260px; /* largeur de ta sidebar */
+}
+
+.separator {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(148, 163, 184, 0.35),
+    transparent
+  );
+  margin: 16px 0;
+}
+
+#drop-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4); /* voile gris */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: #fff;
+    pointer-events: none; /* permet de passer la souris au-dessous */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1000; /* au-dessus de la carte */
+}
+
+#drop-overlay.show {
+    opacity: 1;
+}
+
+
+/*Sidebar droite leaflet*/
+
+
+/* Container scrollable */
+.wp-container {
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    padding-right: 6px;
+}
+
+/* Un waypoint */
+.wp {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    background: #f7f8fa;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 6px;
+    margin-bottom: 8px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.wp-num {
+    width: 26px;
+    height: 26px;
+    background: #d1d5db;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: #111827;
+    font-size: 13px;
+}
+
+.wp-info {
+    flex: 1;
+}
+
+.wp-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.wp-meta {
+    font-size: 12px;
+    color: #4b5563;
+    margin-top: 2px;
+}
+
+
+/*fenetre de téléchargement*/
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: blur(2px);
+    z-index: 3000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: #eceff3;
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    text-align: center;
+    min-width: 260px;
+}
+
+.format-btn {
+    display: block;
+    width: 100%;
+    margin: 8px 0;
+    padding: 10px;
+    background: #427542;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.format-btn:hover {
+    background: #315a31;
+}
+
+.close-btn {
+    margin-top: 10px;
+    background: #aaa;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
